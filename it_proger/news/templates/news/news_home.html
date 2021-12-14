@@ -5,15 +5,17 @@
 {% block content %}
 <div class="features">
     <h1>Новости на сайте</h1>
-    <p>News!!!Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-    <button class="btn btn-warning">На страницу про нас</button>
-
-
-    {% for val in values %}
-        {% if val == 'Hello' %}
-            {% filter upper %}<p>{{ val }}</p>{% endfilter %}
+        {% if news %}
+            {% for element in news %}
+                <div class="alert alert-warning">
+                    <h3>{{ element.title }}</h3>
+                    <p>{{ element.anons }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>У вас нет записей!</p>
         {% endif %}
-    {% endfor %}
 
+        {# Коментарии !!!#}
 </div>
 {% endblock %}
