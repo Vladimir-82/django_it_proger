@@ -6,6 +6,8 @@
 <div class="features">
     <h1>{{ article.title }}</h1> {# ключ из views.py #}
     <p>{{ article.date }}</p>
-    <p>{{ article.full_text }}</p>
+    <p class="context">{{ article.full_text }}</p>
+    <a href="{% url 'news-delete' article.id %}" class="btn btn-danger">Удалить</a>  {#ссылка на url.py#}
+    <a href="{% url 'news-update' article.id %}" class="btn btn-info">Редактировать</a>  {#ссылка на url.py#}
 </div>
 {% endblock %}

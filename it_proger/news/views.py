@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Articles
 from .forms import ActiclesForm
-from django.views.generic import DetailView # импортируем встроеный класс django для создания своего
+from django.views.generic import DetailView, UpdateView, DeleteView  # импортируем встроеный класс django для создания своего
 
 # Create your views here.
 
@@ -14,7 +14,19 @@ def news_home(request):
 class NewsDetailView(DetailView):
     model = Articles
     template_name = 'news/detail_view.html'
-    context_object_name = 'article' # название ключа для передачи внутрь шаблона
+    context_object_name = 'article'  # название ключа для передачи внутрь шаблона
+
+class NewsUpdateView(UpdateView):
+    model = Articles
+    template_name = 'news/create.html'
+    # fields = ['title', 'anons', 'full_text', 'date']
+    form_class = ActiclesForm  # работаем с классом ActiclesForm
+
+
+class NewsDeleteView(DeleteView):
+    model = Articles
+    success_url = '/news/'  # куда идем после удаления статьи
+    template_name = 'news/news-delete.html'
 
 
 def create(request):
@@ -28,7 +40,7 @@ def create(request):
             error = 'Форма была неверной'
 
 
-    form = ActiclesForm()
+    form = ActiclesForm() # работаем с классом ActiclesForm
 
     data = {
         'form': form,
