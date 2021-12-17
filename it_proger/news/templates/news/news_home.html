@@ -10,8 +10,7 @@
                 <div class="alert alert-warning">
                     <h3>{{ element.title }}</h3>
                     <p>{{ element.anons }}</p>
-                    {{ element.full_text }}<br>
-                    {{ element.date }}
+                    <a href="{% url 'news-detail' element.id %}" class="btn btn-warning">Читать дальше</a>
                 </div>
             {% endfor %}
         {% else %}

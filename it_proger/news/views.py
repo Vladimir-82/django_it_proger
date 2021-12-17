@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Articles
 from .forms import ActiclesForm
+from django.views.generic import DetailView # импортируем встроеный класс django для создания своего
 
 # Create your views here.
 
@@ -8,6 +9,12 @@ from .forms import ActiclesForm
 def news_home(request):
     news = Articles.objects.order_by('-date')  # objects.all() получаем все объекты из модели models Articles
     return render(request, 'news/news_home.html', {'news': news})
+
+
+class NewsDetailView(DetailView):
+    model = Articles
+    template_name = 'news/detail_view.html'
+    context_object_name = 'article' # название ключа для передачи внутрь шаблона
 
 
 def create(request):
