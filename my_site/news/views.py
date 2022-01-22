@@ -3,8 +3,6 @@ from .models import Articles
 from .forms import ActiclesForm
 from django.views.generic import DetailView, UpdateView, DeleteView  # импортируем встроеный класс django для создания своего
 
-# Create your views here.
-
 
 def news_home(request):
     news = Articles.objects.order_by('-date')  # objects.all() получаем все объекты из модели models Articles
