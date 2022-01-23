@@ -13,8 +13,9 @@ from .serializers import Articles_serializer
 
 
 def news_home(request):
-    news = Articles.objects.order_by('-date')  # objects.all() получаем все объекты из модели models Articles
-    return render(request, 'news/news_home.html', {'news': news})
+    news = Articles.objects.all()  # order_by('-date') получаем сортировку. Но у меня  прямо в моделе
+    search = Articles.objects.filter(title__contains='skills')
+    return render(request, 'news/news_home.html', {'news': news, 'search': search})
 
 
 class NewsDetailView(DetailView):
@@ -71,6 +72,7 @@ def create(request):
 class APIArticles(generics.ListCreateAPIView):
     queryset = Articles.objects.all()
     serializer_class = Articles_serializer
+
 
 class APIArticlesDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Articles.objects.all()

@@ -16,5 +16,16 @@
         {% else %}
             <p>У вас нет записей!</p>
         {% endif %}
+
+        {% if search %}
+            {% for element in search %}
+                <div class="search search-warning">
+                    <h3>{{ element.title }}</h3>
+                    <p>{{ element.anons }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Нет таких заголовков по запросу!</p>
+        {% endif %}
 </div>
 {% endblock %}
