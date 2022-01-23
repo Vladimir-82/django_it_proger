@@ -1,7 +1,15 @@
 from django.shortcuts import render, redirect
+from django.views.generic import DetailView, UpdateView, DeleteView  # импортируем встроеный класс django для создания своего
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+from rest_framework import generics
+
 from .models import Articles
 from .forms import ActiclesForm
-from django.views.generic import DetailView, UpdateView, DeleteView  # импортируем встроеный класс django для создания своего
+from .serializers import Articles_serializer
+
 
 
 def news_home(request):
@@ -19,6 +27,7 @@ class NewsUpdateView(UpdateView):
     template_name = 'news/create.html'
     # fields = ['title', 'anons', 'full_text', 'date']
     form_class = ActiclesForm  # работаем с классом ActiclesForm
+    success_url = '/news/'
 
 
 class NewsDeleteView(DeleteView):
@@ -44,7 +53,27 @@ def create(request):
         'form': form,
         'error': error
     }
-
     return render(request, 'news/create.html', data)
+
+
+# class APIArticles(APIView):
+#     def get(self, request):
+#         articles = Articles.objects.all()
+#         serializer = Articles_serializer(articles, many=True)
+#         return Response(serializer.data)
+#     def post(self, request):
+#         serializer = Articles_serializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class APIArticles(generics.ListCreateAPIView):
+    queryset = Articles.objects.all()
+    serializer_class = Articles_serializer
+
+class APIArticlesDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Articles.objects.all()
+    serializer_class = Articles_serializer
 
 
