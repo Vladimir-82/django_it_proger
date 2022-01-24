@@ -5,8 +5,8 @@
 {% block content %}
 <div class="features">
     <h1>Новости на сайте</h1>
-        {% if news %}
-            {% for element in news %}
+        {% if search %}
+            {% for element in search %}
                 <div class="alert alert-warning">
                     <h3>{{ element.title }}</h3>
                     <p>{{ element.anons }}</p>
@@ -14,7 +14,7 @@
                 </div>
             {% endfor %}
         {% else %}
-            <p>У вас нет записей!</p>
+            <p>Нет данных для вашего запроса!</p>
         {% endif %}
 </div>
 {% endblock %}

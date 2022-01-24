@@ -17,6 +17,12 @@ def news_home(request):
     search = Articles.objects.filter(title__contains='skills')
     return render(request, 'news/news_home.html', {'news': news, 'search': search})
 
+def search(request):
+    if (request.method == 'GET'):
+        response = request.GET.get('response', False)
+        search = Articles.objects.filter(title__contains=response)
+    return render(request, 'news/news_home.html', {'search': search})
+
 
 class NewsDetailView(DetailView):
     model = Articles
