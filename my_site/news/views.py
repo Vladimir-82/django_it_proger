@@ -14,14 +14,16 @@ from .serializers import Articles_serializer
 
 def news_home(request):
     news = Articles.objects.all()  # order_by('-date') получаем сортировку. Но у меня  прямо в моделе
-    search = Articles.objects.filter(title__contains='skills')
     return render(request, 'news/news_home.html', {'news': news, 'search': search})
 
-def search(request):
-    if (request.method == 'GET'):
-        response = request.GET.get('response', False)
-        search = Articles.objects.filter(title__contains=response)
-    return render(request, 'news/news_home.html', {'search': search})
+# def search(request):
+#     if request.method == 'GET':
+#         form = ActiclesForm(request.GET)
+#         if form.is_valid():
+#             search = request.GET.get('search', False)
+#
+#             content = Articles.objects.filter(title__contains=search)
+#             return render(request, 'news/search.html', {'search': content})
 
 
 class NewsDetailView(DetailView):

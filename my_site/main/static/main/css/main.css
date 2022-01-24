@@ -40,7 +40,7 @@ aside ul li {
 aside ul li:hover, aside ul a:hover {
     color: #eb5959;
     text-decoration: none;
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 main .features {
@@ -63,9 +63,22 @@ main .features p {max-width: 400px; margin: 20px auto}
 }
 
 form {
-    margin-left: 32%;
-    width: 500px;
+    margin-left: 40%;
+    width: 250px;
     margin-top: 50px;
+}
+
+
+aside .search {
+    margin-top: 30px;
+    margin-left: -80px;
+    width: 150px;
+
+}
+
+.features img {
+    width: 500px;
+    float: center;
 }
 
 .context {
