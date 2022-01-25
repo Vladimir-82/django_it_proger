@@ -1,10 +1,10 @@
 {% extends 'main/layout.html' %}
 
-<title>{% block title %}Новости на сайте{% endblock %}</title>
+<title>{% block title %}Поиск на сайте{% endblock %}</title>
 
 {% block content %}
 <div class="features">
-    <h1>Новости на сайте</h1>
+    <h1>Поиск на сайте ({{ count }} ст.)</h1>
         {% if search %}
             {% for element in search %}
                 <div class="alert alert-warning">
@@ -14,7 +14,8 @@
                 </div>
             {% endfor %}
         {% else %}
-            <p>Нет данных для вашего запроса!</p>
+            <h3>Нет данных для вашего запроса!</h3>
         {% endif %}
+        <a href="{% url 'news_home' %}"><button class="btn btn-danger">Перейти в новости</button></a>
 </div>
 {% endblock %}

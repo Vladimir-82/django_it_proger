@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView, UpdateView, DeleteView  # импортируем встроеный класс django для создания своего
+from django.db.models import Q
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -14,16 +15,12 @@ from .serializers import Articles_serializer
 
 def news_home(request):
     news = Articles.objects.all()  # order_by('-date') получаем сортировку. Но у меня  прямо в моделе
-    return render(request, 'news/news_home.html', {'news': news, 'search': search})
+    return render(request, 'news/news_home.html', {'news': news, 'count': news.count()})
 
-# def search(request):
-#     if request.method == 'GET':
-#         form = ActiclesForm(request.GET)
-#         if form.is_valid():
-#             search = request.GET.get('search', False)
-#
-#             content = Articles.objects.filter(title__contains=search)
-#             return render(request, 'news/search.html', {'search': content})
+def search(request):
+    query = request.GET.get('q')
+    content = Articles.objects.filter(Q(title__contains=query) | Q(anons__contains=query) | Q (full_text__contains=query))
+    return render(request, 'news/search.html', {'search': content, 'count': content.count()})
 
 
 class NewsDetailView(DetailView):

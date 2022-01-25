@@ -4,7 +4,13 @@
 
 {% block content %}
 <div class="features">
-    <h1>Новости на сайте</h1>
+    <h1>Новости на сайте ({{ count }} ст.)</h1>
+    <div class="search">
+        <form action="{% url 'search' %}" method="get">
+            <input name="q" class="form-control" type="text" placeholder="Search...">
+            <input type="submit" name="send" value="Поиск по наличию совпадений в статье" class="mt-2 btn btn-danger">
+        </form>
+    </div>
         {% if news %}
             {% for element in news %}
                 <div class="alert alert-warning">
