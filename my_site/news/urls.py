@@ -9,5 +9,6 @@ urlpatterns = [
     path('<int:pk>/update', views.NewsUpdateView.as_view(), name='news-update'),
     path('<int:pk>/delete', views.NewsDeleteView.as_view(), name='news-delete'),
     path('api/news/', views.APIArticles.as_view()),
+    path('api/search', views.APISearch.as_view()),
     path('api/news/<int:pk>', views.APIArticlesDetail.as_view()),
     ]
