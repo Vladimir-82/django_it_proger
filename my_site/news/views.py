@@ -81,10 +81,15 @@ class APIArticles(generics.ListCreateAPIView):
 
 class APISearch(generics.ListCreateAPIView):
     queryset = Articles.objects.filter(title__contains='test')
+    print('hi')
     print(queryset)
     serializer_class = Articles_serializer
 
+    def get(self, request, *args, **kwargs):
 
+        print('i am here')
+        print(request)
+        return super().get(request, *args, **kwargs)
 
 
 class APIArticlesDetail(generics.RetrieveUpdateDestroyAPIView):
