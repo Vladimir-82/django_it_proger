@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from rest_framework import generics
+from rest_framework import generics, filters
 
 from .models import Articles
 from .forms import ActiclesForm
@@ -79,17 +79,11 @@ class APIArticles(generics.ListCreateAPIView):
     serializer_class = Articles_serializer
 
 
-class APISearch(generics.ListCreateAPIView):
-    queryset = Articles.objects.filter(title__contains='test')
-    print('hi')
-    print(queryset)
+class APISearch(generics.ListAPIView):
+    queryset = Articles.objects.all()
     serializer_class = Articles_serializer
-
-    def get(self, request, *args, **kwargs):
-
-        print('i am here')
-        print(request)
-        return super().get(request, *args, **kwargs)
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['title', 'anons', 'full_text',]
 
 
 class APIArticlesDetail(generics.RetrieveUpdateDestroyAPIView):
