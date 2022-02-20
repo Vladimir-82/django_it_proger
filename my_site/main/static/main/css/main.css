@@ -54,6 +54,28 @@ main .features {
 main .features h1 {font-size: 50px;}
 main .features p {max-width: 400px; margin: 20px auto}
 
+
+main .detail {
+    padding-top: 20px;
+    color: #fff;
+    text-align: center;
+    text-width: 85%;
+    width: 75%;
+}
+
+.detale_image {
+    display:block;
+    margin:auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    max-width: 85%;
+}
+
+main .detail h1 {
+    font-size: 50px;
+}
+
+
 .alert-warning {
     float: left;
     clear: both;
@@ -67,7 +89,6 @@ main .features p {max-width: 400px; margin: 20px auto}
     max-width: 355px;
     padding-top: 5px;
     padding-bottom: 10px;
-
 }
 
 
@@ -89,6 +110,8 @@ form {
 }
 
 .context {
+    margin-left: 30%;
+    margin-right: 5%;
     font-size: 16px;
     text-align: justify;
     font-weight: bold;
