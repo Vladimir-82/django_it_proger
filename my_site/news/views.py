@@ -23,6 +23,12 @@ def category(request, category_id):
     return render(request, 'news/categories.html', context)
 
 
+def list_categories(request):
+    categories = Category.objects.all()
+    context = {'categories': categories}
+    return render(request, 'news/list_categories.html', context)
+
+
 def search(request):
     query = request.GET.get('q')
     content = Articles.objects.filter(Q(title__contains=query) | Q(anons__contains=query) | Q (full_text__contains=query))
