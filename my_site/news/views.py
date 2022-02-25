@@ -14,6 +14,15 @@ def news_home(request):
     news = Articles.objects.all()
     return render(request, 'news/news_home.html', {'news': news, 'count': news.count()})
 
+def category(request, category_id):
+    article = Articles.objects.filter(category=category_id)
+    categories = Category.objects.all()
+    current_category = Category.objects.get(pk=category_id)
+    context = {'article': article, 'categories': categories,
+               'current_category': current_category, 'count': article.count()}
+    return render(request, 'news/categories.html', context)
+
+
 def search(request):
     query = request.GET.get('q')
     content = Articles.objects.filter(Q(title__contains=query) | Q(anons__contains=query) | Q (full_text__contains=query))

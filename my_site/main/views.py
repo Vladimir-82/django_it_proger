@@ -1,5 +1,4 @@
 from django.shortcuts import render
-# Create your views here.
 
 content = {
     'key1': 1,
