@@ -8,7 +8,7 @@ class Articles(models.Model):
     full_text = models.TextField(verbose_name='Статья')
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
     photo = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True, verbose_name='Фото')
-    category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True, verbose_name='Категория')
+    category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True, blank=True, verbose_name='Категория')
 
     def __str__(self):
         return f'Новость: {self.title}'
