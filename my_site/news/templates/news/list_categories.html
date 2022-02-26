@@ -1,6 +1,19 @@
-<div class="list-group">
-    {% for item in categories %}
-        <a href="{{ item.get_absolute_url }}" class="list-group-item list-group-item-action">{{ item.title }}</a>
+{% extends 'main/layout.html' %}
 
-    {% endfor %}
+<title>{% block title %}Категории{% endblock %}</title>
+
+{% block content %}
+<div class="features">
+    <h1>Категории ({{ count }} кат.)</h1>
+        {% if categories %}
+            {% for element in categories %}
+                <div class="alert alert-warning">
+                    <a href="{% url 'category' element.pk %}">
+                    <h3>{{ element }}</h3>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Нет категорий!!</p>
+        {% endif %}
 </div>
+{% endblock %}
