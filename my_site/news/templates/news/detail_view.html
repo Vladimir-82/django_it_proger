@@ -3,8 +3,7 @@
 <title>{% block title %}{{ article.title }}{% endblock %}</title>
 
 {% block content %}
-<div class="parent">
-    <div class="detail">
+<div class="features">
         <h1>{{ article.title }}</h1>
         <h4>Категория: {{ article.category }}</h4>
         <p>{{ article.date }}</p>
@@ -18,6 +17,6 @@
         </div>
         <a href="{% url 'news-delete' article.id %}" class="btn btn-danger">Удалить</a>  {#ссылка на url.py#}
         <a href="{% url 'news-update' article.id %}" class="btn btn-info">Редактировать</a>  {#ссылка на url.py#}
-    </div>
+
 </div>
 {% endblock %}
