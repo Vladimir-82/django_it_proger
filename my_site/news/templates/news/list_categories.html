@@ -7,7 +7,7 @@
     <h1>Категории ({{ count }} кат.)</h1>
         {% if categories %}
             {% for element in categories %}
-                <div class="alert alert-warning">
+                <div class="alert alert-warning" class="categories">
                     <a href="{% url 'category' element.pk %}">
                     <h3>{{ element }}</h3>
                 </div>
