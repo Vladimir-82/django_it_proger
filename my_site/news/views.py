@@ -31,9 +31,15 @@ def list_categories(request):
 def category(request, category_id):
     article = Articles.objects.filter(category=category_id)
     categories = Category.objects.all()
+    preview = category_id - 1
+    if preview < 1:
+        preview = categories.count()
+    next = category_id + 1
+    if next > categories.count():
+        next = 1
     current_category = Category.objects.get(pk=category_id)
     context = {'article': article, 'categories': categories,
-               'current_category': current_category, 'count': article.count()}
+               'current_category': current_category, 'count': article.count(), 'preview': preview, 'next': next}
     return render(request, 'news/categories.html', context)
 
 

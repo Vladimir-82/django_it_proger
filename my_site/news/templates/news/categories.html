@@ -27,6 +27,8 @@
                     <a href="{% url 'news-detail' element.id %}" class="btn btn-warning">Читать дальше</a>
                 </div>
             {% endfor %}
+            <a href="{% url 'category' preview %}" class="btn btn-info">Предыдущая категория</a>
+            <a href="{% url 'category' next %}" class="btn btn-info">Следующая категория</a>
         {% else %}
             <p>У вас нет записей в этой категории!</p>
         {% endif %}

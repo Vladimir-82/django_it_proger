@@ -6,7 +6,6 @@ urlpatterns = [
     path('search', views.search, name='search'),
     path('create', views.create, name='create'),
     path('category/<int:category_id>', views.category, name='category'),
-    path('category/<int:category_id>', views.category, name='category'),
     path('list_categories', views.list_categories, name='list_categories'),
     path('<int:pk>', views.NewsDetailView.as_view(), name='news-detail'),
     path('<int:pk>/update', views.NewsUpdateView.as_view(), name='news-update'),
