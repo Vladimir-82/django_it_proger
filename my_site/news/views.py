@@ -2,11 +2,14 @@ from django.shortcuts import render, redirect
 from django.views.generic import DetailView, UpdateView, DeleteView
 from django.db.models import Q
 
-from rest_framework import generics, filters
+
+
+from rest_framework import generics, filters, permissions
 
 from .models import Articles, Category
 from .forms import ActiclesForm
 from .serializers import Articles_serializer
+from .permissions import IsAuthorOrReadOnly
 
 
 
@@ -87,9 +90,16 @@ def create(request):
     return render(request, 'news/create.html', data)
 
 
-class APIArticles(generics.ListCreateAPIView):
+class APIArticlesGet(generics.ListAPIView):
     queryset = Articles.objects.all()
     serializer_class = Articles_serializer
+
+class APIArticlesPost(generics.ListCreateAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    queryset = Articles.objects.all()
+    serializer_class = Articles_serializer
+
+
 
 
 class APISearch(generics.ListAPIView):
@@ -100,5 +110,6 @@ class APISearch(generics.ListAPIView):
 
 
 class APIArticlesDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthorOrReadOnly,)
     queryset = Articles.objects.all()
     serializer_class = Articles_serializer
