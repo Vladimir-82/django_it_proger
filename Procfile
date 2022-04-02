@@ -1,0 +1,1 @@
+web: gunicorn mysitevladimir.wsgi --log-file -
